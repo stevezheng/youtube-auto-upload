@@ -33,7 +33,7 @@ class YoutubeUpload:
         self.log = Log(debug)
         self.username=username
         self.password=password
-        self.CHANNEL_COOKIES = CHANNEL_COOKIES    
+        self.CHANNEL_COOKIES = CHANNEL_COOKIES
         self.root_profile_directory=root_profile_directory
         self.proxy_option=proxy_option
         self.watcheveryuploadstep=watcheveryuploadstep
@@ -151,12 +151,12 @@ class YoutubeUpload:
             await self.context.add_cookies(
                 json.load(
                     open(
-                        self.CHANNEL_COOKIES, 
+                        self.CHANNEL_COOKIES,
                         'r'
                     )
                 )
-            )            
-            # login_using_cookie_file(self,self.CHANNEL_COOKIES,page)         
+            )
+            # login_using_cookie_file(self,self.CHANNEL_COOKIES,page)
             await page.goto(YOUTUBE_URL,timeout=300000)
 
             await page.reload()
@@ -184,11 +184,11 @@ class YoutubeUpload:
             await self.context.add_cookies(
                 json.load(
                     open(
-                        self.CHANNEL_COOKIES, 
+                        self.CHANNEL_COOKIES,
                         'r'
                     )
                 )
-            )            
+            )
 
             print('success load cookie files')
             await page.goto(YOUTUBE_URL,timeout=30000)
@@ -224,7 +224,7 @@ class YoutubeUpload:
     # </h1>
         try:
             self.log.debug(f'Trying to detect verify...')
-           
+
             hint=await page.locator('#dialog-title').text_content()
             if "Verify it's you" in hint:
 
@@ -252,8 +252,8 @@ class YoutubeUpload:
 
                 Stephint=await page.locator('.bCAAsb > form:nth-child(1) > span:nth-child(1) > section:nth-child(1) > header:nth-child(1) > div:nth-child(1)').text_content()
                 print(Stephint)
-                if "2-Step Verification" in Stephint:            
-    # <div class="L9iFZc" role="presentation" jsname="NjaE2c"><h2 class="kV95Wc TrZEUc"><span jsslot="" jsname="Ud7fr">2-Step Verification</span></h2><div class="yMb59d" jsname="HSrbLb" aria-hidden="true"></div></div>            
+                if "2-Step Verification" in Stephint:
+    # <div class="L9iFZc" role="presentation" jsname="NjaE2c"><h2 class="kV95Wc TrZEUc"><span jsslot="" jsname="Ud7fr">2-Step Verification</span></h2><div class="yMb59d" jsname="HSrbLb" aria-hidden="true"></div></div>
                 # <span jsslot="" jsname="Ud7fr">2-Step Verification</span>
                     print('you need google auth and sms very code')
                     time.sleep(60)
@@ -281,7 +281,7 @@ class YoutubeUpload:
 
             # daylimit=await self.page.is_visible(ERROR_SHORT_XPATH)
             self.close()
-                
+
             print('catch daily limit,pls try tomorrow')
             # if daylimit:
                 # self.close()
@@ -303,15 +303,16 @@ class YoutubeUpload:
 
                 # TITLE
         print('click title field to input')
-        titlecontainer= page.locator(TEXTBOX)
-        await titlecontainer.click()
+        # titlecontainer= page.locator(TEXTBOX)
+        # await titlecontainer.click()
         print('clear existing title')
-        await page.keyboard.press("Backspace")
-        await page.keyboard.press("Control+KeyA")
-        await page.keyboard.press("Delete")
+        # await page.keyboard.press("Backspace")
+        # await page.keyboard.press("Control+KeyA")
+        # await page.keyboard.press("Delete")
         print('filling new  title')
+        page.fill('#textbox', title)
 
-        await page.keyboard.type(title)
+        # await page.keyboard.type(title)
 
         self.log.debug(f'Trying to set "{title}" as description...')
 
@@ -347,7 +348,7 @@ class YoutubeUpload:
             sleep(self.timeout)
         try:
             self.log.debug('Trying to set video to "Not made for kids"...')
-            
+
             kids_section=page.locator(NOT_MADE_FOR_KIDS_LABEL)
             await page.locator(NOT_MADE_FOR_KIDS_RADIO_LABEL).click()
             sleep(self.timeout)
@@ -415,7 +416,7 @@ class YoutubeUpload:
         # mode a:release_offset exist,publish_data exist will take date value as a starting date to schedule videos
         # mode b:release_offset not exist, publishdate exist , schedule to this specific date
         # mode c:release_offset not exist, publishdate not exist,daily count to increment schedule from tomorrow
-        # mode d: offset exist, publish date not exist, daily count to increment with specific offset schedule from tomorrow            
+        # mode d: offset exist, publish date not exist, daily count to increment with specific offset schedule from tomorrow
             print('date',type(publish_date),publish_date)
             if type(publish_date)==str:
                 publish_date=datetime.fromisoformat(publish_date)
@@ -431,18 +432,18 @@ class YoutubeUpload:
                             date.today().year,  date.today().month,  date.today().day, 10, 15)
                     else:
                         publish_date += offset
-                
+
             else:
                 if publish_date is None:
                     publish_date =datetime(
                         date.today().year,  date.today().month,  date.today().day, 10, 15)
-                    offset = timedelta(days=1)  
+                    offset = timedelta(days=1)
                 else:
                     publish_date = publish_date
                 # dailycount=4
 
                 # release_offset=str(int(start_index/30))+'-'+str(int(start_index)/int(setting['dailycount']))
-                
+
             self.log.debug(
                 f"Trying to set video schedule time...{publish_date}")
 
@@ -471,8 +472,8 @@ class YoutubeUpload:
         print('upload process is done')
 
 
-   
- 
+
+
 
         sleep(5)
         logging.info("Upload is complete")
