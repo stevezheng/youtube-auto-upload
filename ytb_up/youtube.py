@@ -274,19 +274,19 @@ class YoutubeUpload:
         # }).catch(() => {});
 
 
-        hint=await page.locator('#error-short style-scope ytcp-uploads-dialog').text_content()
-        if 'Daily upload limit reached' in hint:
-        # try:
-# <div class="error-short style-scope ytcp-uploads-dialog">Daily upload limit reached</div>
+#         hint=await page.locator('#error-short style-scope ytcp-uploads-dialog').text_content()
+#         if 'Daily upload limit reached' in hint:
+#         # try:
+# # <div class="error-short style-scope ytcp-uploads-dialog">Daily upload limit reached</div>
 
-            # daylimit=await self.page.is_visible(ERROR_SHORT_XPATH)
-            self.close()
+#             # daylimit=await self.page.is_visible(ERROR_SHORT_XPATH)
+#             self.close()
 
-            print('catch daily limit,pls try tomorrow')
-            # if daylimit:
-                # self.close()
-        else:
-            pass
+#             print('catch daily limit,pls try tomorrow')
+#             # if daylimit:
+#                 # self.close()
+#         else:
+#             pass
 
 
 
@@ -310,9 +310,9 @@ class YoutubeUpload:
         # await page.keyboard.press("Control+KeyA")
         # await page.keyboard.press("Delete")
         print('filling new  title')
-        page.fill('#textbox', title)
+        await page.fill('#textbox', '')
 
-        # await page.keyboard.type(title)
+        await page.keyboard.type(title)
 
         self.log.debug(f'Trying to set "{title}" as description...')
 
