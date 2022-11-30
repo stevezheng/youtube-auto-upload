@@ -26,7 +26,8 @@ class YoutubeUpload:
         CHANNEL_COOKIES: str = "",
         ytb_cookies:str="",
         tiktok_cookies:str="",
-        recordvideo:bool=False
+        recordvideo:bool=False,
+        isMonitization=False,
 
     ) -> None:
         self.timeout = timeout
@@ -391,6 +392,13 @@ class YoutubeUpload:
             await wait_for_processing(page,process=False)
             print('uploading progress check task done')
         # if "complete" in page.locator(".progress-label").text_content():
+
+        if self.isMonitization:
+            await self.click_next(page)
+
+            await page.locator(MONITIZATION_TAG_ICON).click()
+            await page.locator(MONITIZATION_TAG_OFF).click()
+            await page.locator(MONITIZATION_TAG_BUT).click()
 
         # sometimes you have 4 tabs instead of 3
         # this handles both cases

@@ -76,3 +76,10 @@ NOT_MADE_FOR_KIDS_LABEL = ".made-for-kids-rating-container"
 ERROR_SHORT_SELECTOR = '#dialog > div > ytcp-animatable.button-area.metadata-fade-in-section.style-scope.ytcp-uploads-dialog > div > div.left-button-area.style-scope.ytcp-uploads-dialog > div > div.error-short.style-scope.ytcp-uploads-dialog'
 ERROR_SHORT_XPATH = '//*[@id="dialog"]/div/ytcp-animatable[2]/div/div[1]/div/div[1]'
 UPLOADING_PROGRESS_SELECTOR = '#dialog > div > ytcp-animatable.button-area.metadata-fade-in-section.style-scope.ytcp-uploads-dialog > div > div.left-button-area.style-scope.ytcp-uploads-dialog > ytcp-video-upload-progress > span'
+
+MONITIZATION_TAG_ICON = '//html/body/ytcp-uploads-dialog/tp-yt-paper-dialog/div/ytcp-animatable[1]/ytcp-uploads-monetization/ytpp-video-monetization-basics/div/div[1]/div/div/ytcp-video-metadata-monetization/ytcp-form-input-container/div[1]/div[2]/ytcp-video-monetization/div/div/div/ytcp-icon-button/tp-yt-iron-icon'
+MONITIZATION_TAG_ON = '//*[@id="radio-on"]'
+MONITIZATION_TAG_OFF = '//*[@id="radio-off"]'
+MONITIZATION_TAG_BUT = '//html/body/ytcp-video-monetization-edit-dialog/tp-yt-paper-dialog/div/div/ytcp-button[2]/div'
+
+SECOND_EXTRA_CLICK = '//*[@id="checkbox-container"]'
