@@ -27,7 +27,7 @@ class YoutubeUpload:
         ytb_cookies:str="",
         tiktok_cookies:str="",
         recordvideo:bool=False,
-        is_monetization=False,
+        is_monetization:bool=False,
 
     ) -> None:
         self.timeout = timeout
