@@ -27,7 +27,7 @@ class YoutubeUpload:
         ytb_cookies:str="",
         tiktok_cookies:str="",
         recordvideo:bool=False,
-        is_monitization=False,
+        is_monetization=False,
 
     ) -> None:
         self.timeout = timeout
@@ -393,7 +393,7 @@ class YoutubeUpload:
             print('uploading progress check task done')
         # if "complete" in page.locator(".progress-label").text_content():
 
-        if self.is_monitization:
+        if self.is_monetization:
             await self.click_next(page)
 
             await page.locator(MONITIZATION_TAG_ICON).click()
