@@ -45,6 +45,7 @@ class YoutubeUpload:
         self.context=''
         self.page=''
         self.recordvideo=recordvideo
+        self.is_monetization=False
         # self.setup()
 
     def send(self, element, text: str) -> None:
