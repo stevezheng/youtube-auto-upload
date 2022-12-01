@@ -27,7 +27,6 @@ class YoutubeUpload:
         ytb_cookies:str="",
         tiktok_cookies:str="",
         recordvideo:bool=False,
-        is_monetization:bool=False,
 
     ) -> None:
         self.timeout = timeout
@@ -45,7 +44,6 @@ class YoutubeUpload:
         self.context=''
         self.page=''
         self.recordvideo=recordvideo
-        self.is_monetization=False
         # self.setup()
 
     def send(self, element, text: str) -> None:
@@ -74,6 +72,7 @@ class YoutubeUpload:
         # mode c:release_offset not exist, publishdate not exist,daily count to increment schedule from tomorrow
         # mode d: offset exist, publish date not exist, daily count to increment with specific offset schedule from tomorrow
         release_offset: str = '0-1',
+        is_monetization=False,
         publish_date: datetime = datetime(
             date.today().year,  date.today().month,  date.today().day, 10, 15),
         tags: list = [],
@@ -394,7 +393,7 @@ class YoutubeUpload:
             print('uploading progress check task done')
         # if "complete" in page.locator(".progress-label").text_content():
 
-        if self.is_monetization:
+        if is_monetization:
             await self.click_next(page)
 
             await page.locator(MONITIZATION_TAG_ICON).click()
